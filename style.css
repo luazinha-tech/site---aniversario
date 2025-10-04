@@ -1,0 +1,58 @@
+/* Body ajustado para vídeo de fundo */
+body {
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Removi o background gradient pois o vídeo cobre */
+    position: relative;
+}
+
+/* Cartão central com mensagem */
+.card {
+    background-color: rgba(236, 244, 244, 0.986); /* Fundo branco semi-transparente */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    animation: fadeIn 2s ease-in-out;
+    position: relative; /* Para ficar sobre o vídeo */
+    z-index: 10;
+}
+
+/* Título */
+h1 {
+    color: #ff4081;
+    margin-bottom: 20px;
+    font-size: 2.2em;
+}
+
+/* Texto da frase */
+p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Assinatura */
+.assinatura {
+    margin-top: 30px;
+    font-style: italic;
+    color: #777;
+}
+
+/* Animação de entrada do cartão */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

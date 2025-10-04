@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Feliz Aniversário, Princesa!</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Estilo dos corações */
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: #e52aa4ff;
+            transform: rotate(-45deg);
+            left: 50%;
+            top: 0;
+            opacity: 0.8;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            z-index: 9999;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #dd159eff;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: 10px;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Estilo do botão de música */
+        .controle-musica {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .controle-musica button {
+            background-color: #ff4081;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.5);
+            transition: background-color 0.3s ease;
+        }
+
+        .controle-musica button:hover {
+            background-color: #e73370;
+        }
+
+        /* Vídeo padrão */
+        #video-normal {
+            display: block;
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            margin: 20px auto 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Feliz Aniversário, Princesa! 🎉</h1>
+        <p id="frase"></p>
+        <p class="assinatura">Com todo meu amor, <br> Sua gigi 💖</p>
+    </div>
+
+    <!-- Vídeo -->
+    <video autoplay muted loop id="video-normal">
+        <source src="video-fundo.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo HTML5.
+    </video>
+
+    <!-- Música -->
+    <audio id="musica" src="musica.mp3" autoplay loop></audio>
+
+    <div class="controle-musica">
+        <button onclick="toggleMusica()">🔊 Pausar / ▶️ Tocar</button>
+    </div>
+
+    <script>
+        // Frases aleatórias (substitui o PHP)
+        const frases = [
+            "Você é o melhor presente que a vida me deu.",
+            "Cada momento ao seu lado é um sonho realizado.",
+            "Feliz aniversário, meu amor! Que seu dia seja tão lindo quanto você.",
+            "Independente de tudo, você sempre terá meu amor! ❤️"
+        ];
+        document.getElementById("frase").innerText =
+            frases[Math.floor(Math.random() * frases.length)];
+
+        // Controle da música
+        const musica = document.getElementById('musica');
+        function toggleMusica() {
+            if (musica.paused) {
+                musica.play();
+            } else {
+                musica.pause();
+            }
+        }
+
+        // Corações animados
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            const duration = Math.random() * 3 + 3; // 3 a 6 segundos
+            heart.style.animationDuration = duration + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
